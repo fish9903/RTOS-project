@@ -6,33 +6,33 @@ AS = arm-none-eabi-as
 LD = arm-none-eabi-ld
 OC = arm-none-eabi-objcopy
 
-LINKER_SCRIPT = ./navilos.ld
+LINKER_SCRIPT = ./myFirstRTOS.ld
 
 ASM_SRCS = $(wildcard boot/*.S)
 ASM_OBJS = $(patsubst boot/%.S, build/%.o, $(ASM_SRCS))
 
-navilos = build/navilos.axf
-navilos_bin = build/navilos.bin
+myFirstRTOS = build/myFirstRTOS.axf
+myFirstRTOS_bin = build/myFirstRTOS.bin
 
 .PHONY: all clean run debug gdb
 
-all: $(navilos)
+all: $(myFirstRTOS)
 
 clean:
 	@rm -fr build
 
 run:
-	qemu-system-arm -M realview-pb-a8 -kernel $(navilos)
+	qemu-system-arm -M realview-pb-a8 -kernel $(myFirstRTOS)
 
-debug: $(navilos)
-	qemu-system-arm -M realview-pb-a8 -kernel $(navilos) -S -gdb tcp::1234,ipv4
+debug: $(myFirstRTOS)
+	qemu-system-arm -M realview-pb-a8 -kernel $(myFirstRTOS) -S -gdb tcp::1234,ipv4
 
 gdb:
 	arm-none-eabi-gdb
 
-$(navilos): $(ASM_OBJS) $(LINKER_SCRIPT)
-	$(LD) -n -T $(LINKER_SCRIPT) -o $(navilos) $(ASM_OBJS)
-	$(OC) -O binary $(navilos) $(navilos_bin)
+$(myFirstRTOS): $(ASM_OBJS) $(LINKER_SCRIPT)
+	$(LD) -n -T $(LINKER_SCRIPT) -o $(myFirstRTOS) $(ASM_OBJS)
+	$(OC) -O binary $(myFirstRTOS) $(myFirstRTOS_bin)
 
 build/%.o: boot/%.S
 	mkdir -p $(shell dirname $@)
