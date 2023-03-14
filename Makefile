@@ -10,7 +10,7 @@ LINKER_SCRIPT = ./myFirstRTOS.ld
 MAP_FILE = build/myFirstRTOS.map
 
 ASM_SRCS = $(wildcard boot/*.S)
-ASM_OBJS = $(patsubst boot/%.S, build/%.o, $(ASM_SRCS))
+ASM_OBJS = $(patsubst boot/%.S, build/%.os, $(ASM_SRCS))
 
 C_SRCS = $(wildcard boot/*.c)
 C_OBJS = $(patsubst boot/%.c, build/%.o, $(C_SRCS))
@@ -27,7 +27,7 @@ all: $(myFirstRTOS)
 clean:
 	@rm -fr build
 
-run:
+run:$(myFirstRTOS)
 	qemu-system-arm -M realview-pb-a8 -kernel $(myFirstRTOS)
 
 debug: $(myFirstRTOS)
@@ -39,6 +39,10 @@ gdb:
 $(myFirstRTOS): $(ASM_OBJS) $(C_OBJS) $(LINKER_SCRIPT)
 	$(LD) -n -T $(LINKER_SCRIPT) -o $(myFirstRTOS) $(ASM_OBJS) $(C_OBJS) -Map=$(MAP_FILE)
 	$(OC) -O binary $(myFirstRTOS) $(myFirstRTOS_bin)
+
+build/%.os: $(ASM_SRCS)
+	mkdir -p $(shell dirname $@)
+	$(CC) -march=$(ARCH) -mcpu=$(MCPU) $(INC_DIRS) -c -g -o $@ $<
 
 build/%.o: $(C_SRCS)
 	mkdir -p $(shell dirname $@)
