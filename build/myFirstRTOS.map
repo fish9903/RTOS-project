@@ -118,23 +118,23 @@ LOAD linker stubs
  .comment       0x0000000000000033       0x34 build/Uart.o
  .comment       0x0000000000000033       0x34 build/stdio.o
 
-.debug_line     0x0000000000000000      0x48d
+.debug_line     0x0000000000000000      0x46b
  .debug_line    0x0000000000000000       0x6d build/Entry.os
  .debug_line    0x000000000000006d       0x95 build/Main.o
- .debug_line    0x0000000000000102       0x70 build/Regs.o
- .debug_line    0x0000000000000172       0xd1 build/Uart.o
- .debug_line    0x0000000000000243      0x17f build/stdio.o
- .debug_line    0x00000000000003c2       0x74 /usr/lib/gcc/arm-none-eabi/10.3.1/libgcc.a(_udivsi3.o)
- .debug_line    0x0000000000000436       0x57 /usr/lib/gcc/arm-none-eabi/10.3.1/libgcc.a(_dvmd_tls.o)
+ .debug_line    0x0000000000000102       0x4e build/Regs.o
+ .debug_line    0x0000000000000150       0xd1 build/Uart.o
+ .debug_line    0x0000000000000221      0x17f build/stdio.o
+ .debug_line    0x00000000000003a0       0x74 /usr/lib/gcc/arm-none-eabi/10.3.1/libgcc.a(_udivsi3.o)
+ .debug_line    0x0000000000000414       0x57 /usr/lib/gcc/arm-none-eabi/10.3.1/libgcc.a(_dvmd_tls.o)
 
-.debug_info     0x0000000000000000     0x1b38
+.debug_info     0x0000000000000000     0x1b2a
  .debug_info    0x0000000000000000       0x26 build/Entry.os
  .debug_info    0x0000000000000026      0x116 build/Main.o
- .debug_info    0x000000000000013c      0xb46 build/Regs.o
- .debug_info    0x0000000000000c82      0xba7 build/Uart.o
- .debug_info    0x0000000000001829      0x2c3 build/stdio.o
- .debug_info    0x0000000000001aec       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/libgcc.a(_udivsi3.o)
- .debug_info    0x0000000000001b12       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/libgcc.a(_dvmd_tls.o)
+ .debug_info    0x000000000000013c      0xb38 build/Regs.o
+ .debug_info    0x0000000000000c74      0xba7 build/Uart.o
+ .debug_info    0x000000000000181b      0x2c3 build/stdio.o
+ .debug_info    0x0000000000001ade       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/libgcc.a(_udivsi3.o)
+ .debug_info    0x0000000000001b04       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/libgcc.a(_dvmd_tls.o)
 
 .debug_abbrev   0x0000000000000000      0x490
  .debug_abbrev  0x0000000000000000       0x14 build/Entry.os
@@ -166,7 +166,7 @@ LOAD linker stubs
  .debug_str     0x0000000000000039       0xfe build/Main.o
                                         0x13c (size before relaxing)
  .debug_str     0x0000000000000137      0x302 build/Regs.o
-                                        0x413 (size before relaxing)
+                                        0x3f8 (size before relaxing)
  .debug_str     0x0000000000000439       0x47 build/Uart.o
                                         0x437 (size before relaxing)
  .debug_str     0x0000000000000480       0x7c build/stdio.o
