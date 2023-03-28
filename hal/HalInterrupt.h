@@ -3,7 +3,7 @@
 
 #define INTERRUPT_HANDLER_NUM 255
 
-typedef void (*InterHdlr_fptr)(void)
+typedef void (*InterHdlr_fptr)(void);
 
 void Hal_interrupt_init(void);
 void Hal_interrupt_enable(uint32_t interrupt_num);
