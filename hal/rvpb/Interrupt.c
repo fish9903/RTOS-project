@@ -4,7 +4,10 @@
 #include "HalInterrupt.h"
 #include "armcpu.h"
 
-#include <stddef.h>
+#ifndef STDDEF_H_
+#define STDDEF_H_
+#include <stddef.h> // inclue NULL
+#endif
 
 extern volatile GicCput_t* GicCpu;
 extern volatile GicDist_t* GicDist;

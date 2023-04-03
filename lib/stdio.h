@@ -1,6 +1,6 @@
 #ifndef STDDEF_H_
 #define STDDEF_H_
-#include <stddef.h>
+#include <stddef.h> // inclue NULL
 #endif
 
 #ifndef LIB_STDIO_H_

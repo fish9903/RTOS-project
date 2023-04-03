@@ -2,6 +2,7 @@
 #include "HalUart.h"
 #include "stdio.h"
 #include "stdbool.h"
+#include "HalInterrupt.h"
 
 static void Hw_init(void);
 static void Printf_test(void);
@@ -26,6 +27,8 @@ void main(void)
 
 static void Hw_init(void)
 {
+    // interrupt init -> UART init
+    Hal_interrupt_init();
     Hal_uart_init();
 }
 
