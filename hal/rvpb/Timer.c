@@ -28,8 +28,9 @@ void Hal_timer_init(void)
     Timer->timerxcontrol.bits.TimerPre = 0;
     Timer->timerxcontrol.bits.IntEnable = 1;
 
-    uint32_t interval = TIMER_10HZ_INTERVAL / 100;
-
+    //uint32_t interval = TIMER_10HZ_INTERVAL / 100;
+    uint32_t interval = TIMER_1MZ_INTERVAL / 1000;
+    
     Timer->timerxload = interval;
     Timer->timerxcontrol.bits.TimerEn = 1;
 
