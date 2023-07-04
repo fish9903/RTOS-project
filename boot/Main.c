@@ -8,6 +8,7 @@
 #include "HalTimer.h"
 
 #include "task.h"
+#include "Kernel.h"
 
 static void Hw_init(void);
 static void Kernel_init(void);
@@ -35,6 +36,8 @@ void main(void)
     Printf_test();
     Timer_test();
     
+    Kernel_init();
+
     while(true);
 }
 
@@ -50,23 +53,28 @@ static void Kernel_init(void)
 {
     uint32_t taskId;
 
-    taskId = Kernel_task_create(User_task0);
+    Kernel_task_init();
+
+    taskId = Kernel_task_create(User_task0, 0);
     if (NOT_ENOUGH_TASK_NUM == taskId)
     {
         putstr("Task0 creation fail\n");
     }
 
-    taskId = Kernel_task_create(User_task1);
+    taskId = Kernel_task_create(User_task1, 0);
     if (NOT_ENOUGH_TASK_NUM == taskId)
     {
         putstr("Task1 creation fail\n");
     }
 
-    taskId = Kernel_task_create(User_task2);
+    taskId = Kernel_task_create(User_task2, 0);
     if (NOT_ENOUGH_TASK_NUM == taskId)
     {
         putstr("Task2 creation fail\n");
     }
+
+    // start
+    Kernel_start();
 }
 
 static void Printf_test(void)
@@ -87,7 +95,7 @@ static void Printf_test(void)
 
 static void Timer_test(void)
 {
-    while(true)
+    for(uint32_t i = 0; i < 3; i++)
     {
         debug_printf("current count : %u\n", Hal_timer_get_1ms_counter());
         delay(1000);
@@ -96,21 +104,36 @@ static void Timer_test(void)
 
 void User_task0(void)
 {
-    debug_printf("User Task #0\n");
+    uint32_t local = 0;
+    
+    while(true)
+    {
+        debug_printf("User Task #0 SP=0x%x\n", &local);
 
-    while(true);
+        Kernel_yield();
+    }
 }
 
 void User_task1(void)
 {
-    debug_printf("User Task #1\n");
+    uint32_t local = 0;
+    
+    while(true)
+    {
+        debug_printf("User Task #1 SP=0x%x\n", &local);
 
-    while(true);
+        Kernel_yield();
+    }
 }
 
 void User_task2(void)
 {
-    debug_printf("User Task #2\n");
+    uint32_t local = 0;
+    
+    while(true)
+    {
+        debug_printf("User Task #2 SP=0x%x\n", &local);
 
-    while(true);
+        Kernel_yield();
+    }
 }
