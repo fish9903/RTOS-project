@@ -55,12 +55,15 @@ static void interrupt_handler(void)
     uint8_t ch = Hal_uart_get_char();
     Hal_uart_put_char(ch);
 
-    //debug_printf("\nsend UartIn, CmdIn events\n");
-    Kernel_send_events(KernelEventFlag_UartIn | KernelEventFlag_CmdIn); // send events
+    Kernel_send_msg(KernelMsgQ_Task0, &ch, 1);  // send msg to UserTask0
+    Kernel_send_events(KernelEventFlag_UartIn); // send UartIn event(UserTask0 is waiting for UartIn event)
 
-    if(ch == 'X')
-    {
-        //debug_printf("\nsend CmdOut events\n");
-        Kernel_send_events(KernelEventFlag_CmdOut);
-    }
+    // //debug_printf("\nsend UartIn, CmdIn events\n");
+    // Kernel_send_events(KernelEventFlag_UartIn | KernelEventFlag_CmdIn); // send events
+
+    // if(ch == 'X')
+    // {
+    //     //debug_printf("\nsend CmdOut events\n");
+    //     Kernel_send_events(KernelEventFlag_CmdOut);
+    // }
 }
