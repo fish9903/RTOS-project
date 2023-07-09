@@ -52,7 +52,7 @@ debug: $(myFirstRTOS)
 	qemu-system-arm -M realview-pb-a8 -kernel $(myFirstRTOS) -S -gdb tcp::1234,ipv4
 	
 gdb:
-	arm-none-eabi-gdb
+	gdb-multiarch
 	
 $(myFirstRTOS): $(ASM_OBJS) $(C_OBJS) $(LINKER_SCRIPT)
 	$(LD) -n -T $(LINKER_SCRIPT) -o $(myFirstRTOS) $(ASM_OBJS) $(C_OBJS) -Wl,-Map=$(MAP_FILE) $(LDFLAGS)
