@@ -53,17 +53,40 @@ uint8_t Hal_uart_get_char(void)
 static void interrupt_handler(void)
 {
     uint8_t ch = Hal_uart_get_char();
-    Hal_uart_put_char(ch);
-
-    Kernel_send_msg(KernelMsgQ_Task0, &ch, 1);  // send msg to UserTask0
-    Kernel_send_events(KernelEventFlag_UartIn); // send UartIn event(UserTask0 is waiting for UartIn event)
-
+    
     // //debug_printf("\nsend UartIn, CmdIn events\n");
     // Kernel_send_events(KernelEventFlag_UartIn | KernelEventFlag_CmdIn); // send events
 
-    // if(ch == 'X')
+    // semaphore test code
+    // if(ch != 'X')
+    // {
+    //     Hal_uart_put_char(ch);
+
+    //     Kernel_send_msg(KernelMsgQ_Task0, &ch, 1);  // send msg to UserTask0
+    //     Kernel_send_events(KernelEventFlag_UartIn); // send UartIn event(UserTask0 is waiting for UartIn event)
+
+    // }
+    // else
     // {
     //     //debug_printf("\nsend CmdOut events\n");
     //     Kernel_send_events(KernelEventFlag_CmdOut);
     // }
+
+    // mutex test code 
+    if(ch == 'U')
+    {
+        Kernel_send_events(KernelEventFlag_Unlock);
+        return;
+    }
+
+    if(ch == 'X')
+    {
+        Kernel_send_events(KernelEventFlag_CmdOut);
+        return;
+    }
+    
+    Hal_uart_put_char(ch);
+
+    Kernel_send_msg(KernelMsgQ_Task0, &ch, 1);  // send msg to UserTask0
+    Kernel_send_events(KernelEventFlag_UartIn); // send UartIn event(UserTask0 is waiting for UartIn event)
 }

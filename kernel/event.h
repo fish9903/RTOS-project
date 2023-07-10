@@ -6,7 +6,7 @@ typedef enum KernelEventFlag_t
     KernelEventFlag_UartIn      = 0x00000001, // UART IN event
     KernelEventFlag_CmdIn       = 0x00000002, // CMD IN event
     KernelEventFlag_CmdOut      = 0x00000004, // CMD OUT event
-    KernelEventFlag_Reserved03  = 0x00000008,
+    KernelEventFlag_Unlock      = 0x00000008, // Unlock event (synchronization)
     KernelEventFlag_Reserved04  = 0x00000010,
     KernelEventFlag_Reserved05  = 0x00000020,
     KernelEventFlag_Reserved06  = 0x00000040,

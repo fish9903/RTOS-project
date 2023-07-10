@@ -125,3 +125,8 @@ static KernelTcb_t* Schduler_priority_algorithm(void)
     }
     return &sTask_list[max_priority_index];
 }
+
+uint32_t Kernel_task_get_current_task_id(void)
+{
+    return sCurrent_tcb_index;
+}
