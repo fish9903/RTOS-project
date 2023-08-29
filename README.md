@@ -5,4 +5,4 @@
 - QEMU: ARM RealView PB-A8
   
   >수정사항
-  - gdb를 gdb-arm-none-eabi --> gdb-multiarch 로 변경하여 사용
+  - gdb 설치시 gdb-arm-none-eabi --> gdb-multiarch 로 변경하여 설치
